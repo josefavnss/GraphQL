@@ -1,0 +1,39 @@
+# Category é um modelo
+type Category {
+  id: ID!
+  name: String!
+  description: String
+  courses: [Course!]!  
+}
+
+# Course é um modelo
+type Course {
+  id: ID!
+  name: String!
+  description: String
+  category: Category!
+}
+
+# input são usados para os dados de entrada
+input NewCategory {
+  name: String!
+  description: String
+}
+
+input NewCourse {
+  name: String!
+  description: String
+  categoryId: ID!
+}
+
+# Query é utilizado para fazer busca
+type Query {
+  categories: [Category!]!
+  courses: [Course!]!
+}
+
+# Mutation é quando será feito uma alteração nos modelos. Quando será adicionado ou atualizado dos dados
+type Mutation {
+  createCategory(input: NewCategory!): Category!
+  createCourse(input: NewCourse!): Course!
+}
